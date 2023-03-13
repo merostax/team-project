@@ -1,0 +1,17 @@
+
+services:
+
+  gui:
+    build:
+      context: "../../gui"
+      dockerfile: "Dockerfile.hotreload"
+    environment:
+      VIRTUAL_HOST: "${ABZ_URL}"
+      VIRTUAL_PORT: "8080"
+      VUE_APP_API_URL: "https://${ABZ_URL}/api/v1"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "../../gui:/app"
+    depends_on:
+      - "server"
